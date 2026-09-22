@@ -1,33 +1,40 @@
-// Q86: Check if a string is a palindrome.
+// Count spaces, digits, and special characters in a string.
 
-#include <stdio.h>
+#include<stdio.h>
 #include <string.h>
 int main()
- {
-    char str[100];
-
-    printf("Enter a string: ");
-    scanf("%s", str);
-
-    int length = strlen(str);
-    int isPalindrome = 1; 
-
-    for (int i = 0; i < length / 2; i++) 
+{
+	char str[50];
+	int i, spaces=0, special=0, digits=0;
+	
+	printf("Enter a string. ");
+	scanf("%[^\n]", str);
+	
+	for(i=0; str[i]!='\0';i++)
 	{
-        if (str[i] != str[length - 1 - i]) 
-		{
-            isPalindrome = 0; 
-            break;
+		char ch=str[i];
+		
+		 if ( ch == ' ' )
+        {
+            spaces++ ;
+        }
+        else if ( ch >= '0' && ch <= '9' )
+        {
+            digits++ ;
+        }
+		 else if ( (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') )
+        {
+            // letter — not counted
+        }
+        else
+        {
+            special++ ;
         }
     }
 
-    if (isPalindrome==1) 
-	{
-        printf("Palindrome\n");
-    } else
-	{
-        printf("Not palindrome\n");
-    }
+    printf("Spaces = %d\n", spaces);
+    printf("Digits = %d\n", digits);
+    printf("Special characters = %d\n", special);
 
-    return 0;
+    return 0 ;
 }
